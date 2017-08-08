@@ -22,8 +22,22 @@ idx = zeros(size(X,1), 1);
 %
 
 
-
-
+for i = 1: size(X,1)
+    shortdist = inf;
+    
+    %calculates the error of each point to every centroid
+    for k = 1:K
+        error = X(i,:)-centroids(k,:);
+        dist = error*error';
+        
+        %if the squared error is smaller than the previous shortest
+        %distance than that example is assigned to that centroid
+        if dist<shortdist
+            shortdist = dist;
+            idx(i) = k;
+        end
+    end
+end
 
 
 

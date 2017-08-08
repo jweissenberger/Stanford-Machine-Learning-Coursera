@@ -18,7 +18,11 @@ Z = zeros(size(X, 1), K);
 %                    projection_k = x' * U(:, k);
 %
 
+% top K components in U
+U_reduce = U(:, 1:K);
 
+% projected each example onto U_reduce
+Z = (U_reduce'*X')';
 
 
 % =============================================================

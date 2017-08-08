@@ -20,9 +20,8 @@ S = zeros(n);
 %       number of examples).
 %
 
-
-
-
+%calculates the eigenvectors
+[U, S, V] = svd((1/m)*(X'*X));
 
 
 
