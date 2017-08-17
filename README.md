@@ -6,3 +6,5 @@ In this class, you will learn about the most effective machine learning techniqu
 Taught by Andrew NG
 
 Course website: https://www.coursera.org/learn/machine-learning/home/info
+
+Course Certificate: https://www.coursera.org/account/accomplishments/certificate/JWHL8RG6QJP9
