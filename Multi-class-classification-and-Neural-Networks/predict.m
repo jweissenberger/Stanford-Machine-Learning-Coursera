@@ -21,15 +21,24 @@ p = zeros(size(X, 1), 1);
 %       can use max(A, [], 2) to obtain the max for each row.
 %
 
+% initializes the input layer NN
+a1 = [ones(m, 1) X];
 
-a1 = [ones(m, 1) X]; %defines the input layer of the NN
-z2 = a1*Theta1'; %the first operation on the input layer
-a2 = [ones(size(z2, 1), 1) sigmoid(z2)]; %defines the first hidden layer
-z3 = a2*Theta2'; %operation on hidden layer
-a3 = sigmoid(z3); %output prediction based on sigmoid function
+% the first operation on the input layer
+z2 = a1*Theta1';
 
+% defines the first hidden layer
+a2 = [ones(size(z2, 1), 1) sigmoid(z2)];
+
+% operation on hidden layer
+z3 = a2*Theta2'; 
+
+% output prediction based on sigmoid function
+a3 = sigmoid(z3); 
+
+% this prediction is usually around 95% correct
 [~, p] = max(a3, [], 2);
-%this prediction is usually around 95% correct
+
 
 % =========================================================================
 

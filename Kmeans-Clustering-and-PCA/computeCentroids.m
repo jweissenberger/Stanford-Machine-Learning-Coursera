@@ -28,15 +28,22 @@ centroids = zeros(K, n);
 
 % performs the operations for each value of k
 for k = 1: K 
-    kCount = 0; % counts the number of times specific k value appears
-    sum = zeros(n, 1); % sums the position of each example associated w/k val
+    
+    % counts the number of times specific k value appears
+    kCount = 0; 
+    
+    % sums the position of each example associated w/k val
+    sum = zeros(n, 1); 
+    
     for i = 1: m
         if (idx(i) == k)
             sum = sum + X(i,:)';
             kCount = kCount + 1;
         end
     end
-    centroids(k, :) = (sum/kCount)'; %stores the new means
+    
+    %stores the new means
+    centroids(k, :) = (sum/kCount)'; 
 end
 
 

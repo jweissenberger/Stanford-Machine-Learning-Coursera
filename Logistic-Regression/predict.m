@@ -20,7 +20,7 @@ hyp = sigmoid(X * theta);
 
 %decides the prediction based on if the hypothesis is greater than or equal
 %to 0.5
-p = hyp >= 0.5;
+p = (hyp >= 0.5);
 
 
 

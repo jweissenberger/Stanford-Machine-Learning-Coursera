@@ -26,20 +26,20 @@ sigma = 0.3;
 C_vals = [0.01 0.03 0.1 0.3 1 3 10 30];
 sigma_vals = [0.01 0.03 0.1 0.3 1 3 10 30];
 
-pred_error = 1000;
+predError = inf;
 
 %iterates through each of the possible C and sigma values
 for Ci=1:length(C_vals),
-    local_C = C_vals(Ci);
+    testC = C_vals(Ci);
     for sigmai=1:length(sigma_vals),
-        local_sigma = sigma_vals(sigmai);
-        model = svmTrain(X, y, local_C, @(x1, x2) gaussianKernel(x1, x2, local_sigma));
+        testSigma = sigma_vals(sigmai);
+        model = svmTrain(X, y, testC, @(x1, x2) gaussianKernel(x1, x2, testSigma));
         predictions = svmPredict(model, Xval);
         local_pred_error = mean(double(predictions ~= yval));
-        if local_pred_error < pred_error,
-            pred_error = local_pred_error;
-            C = local_C;
-            sigma = local_sigma;
+        if local_pred_error < predError,
+            predError = local_pred_error;
+            C = testC;
+            sigma = testSigma;
         end
     end
 

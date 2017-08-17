@@ -17,12 +17,9 @@ for iter = 1:num_iters
     %       of the cost function (computeCost) and gradient here.
     %
 
-
-theta = theta - alpha * (X' *(X* theta-y))/m;
-%computes the gradient descent each time the loop iterates 
-%this same equation can be applied for multivariable gradient descent as
-%well
-
+    % computes the gradient descent each time the loop iterates 
+    % this same equation can be applied for multivariable gradient descent
+    theta = theta - alpha * (X' *(X* theta-y))/m;
 
 
     % ============================================================

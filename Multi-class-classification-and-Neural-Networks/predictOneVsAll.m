@@ -30,9 +30,14 @@ X = [ones(m, 1) X];
 %       for each row.
 %       
 
-predict = sigmoid(X*all_theta'); %prediction based on sigmoid function
-[~, i_max]=max(predict, [], 2); %obtains the max for each row
-p = i_max; %sets p equal to a vector of the predictions 
+%prediction based on sigmoid function
+predict = sigmoid(X*all_theta');
+
+%obtains the max for each row
+[~, i_max]=max(predict, [], 2);
+
+%sets p equal to a vector of the predictions
+p = i_max;  
 
 
 

@@ -97,11 +97,11 @@ while ~isempty(email_contents)
     %       str2). It will return 1 only if the two strings are equivalent.
     %
 
-% indexes strings that match existing words in the vocab list
-for i=1:length(vocabList),
-        if strcmp(str, vocabList(i)) == 1,
-            word_indices = [word_indices; i];
-        end
+    % indexes strings that match existing words in the vocab list
+    for i=1:length(vocabList),
+            if strcmp(str, vocabList(i)) == 1,
+             word_indices = [word_indices; i];
+            end
     end
 
 

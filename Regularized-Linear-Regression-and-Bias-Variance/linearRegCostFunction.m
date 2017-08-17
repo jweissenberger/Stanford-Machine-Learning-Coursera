@@ -23,10 +23,10 @@ grad = zeros(size(theta));
 theta1 = [0 ; theta(2:end, :)];
 
 %cost function from previous linear Regression assignment
-J = (1/(2*m))*((X*theta - y)'*(X*theta - y) + lambda*(theta1'* theta1));
+J = (1/(2*m))*((X*theta-y)'*(X*theta-y)+lambda*(theta1'* theta1));
 
 %gradient
-grad = (X'* (X*theta - y) +lambda*theta1)/m;
+grad = (X'*(X*theta-y)+lambda*theta1)/m;
 
 
 

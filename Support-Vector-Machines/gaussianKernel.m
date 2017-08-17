@@ -17,7 +17,8 @@ sim = 0;
 %
 
 
-%equation for the gaussian kernel
+% equation for the gaussian kernel 
+% (lecture 12 slide 27)
 sim = exp(-1*(x1-x2)'*(x1-x2)/(2*sigma^2));
 
 

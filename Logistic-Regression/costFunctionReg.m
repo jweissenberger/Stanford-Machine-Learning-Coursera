@@ -18,15 +18,15 @@ grad = zeros(size(theta));
 %               derivatives of the cost w.r.t. each parameter in theta
 
 %calculates the hypothesis based on the sigmoid function
-hyp = sigmoid(X * theta);
+hyp = sigmoid(X*theta);
 
 %calculates the regularized cost function
-J = 1 / m * sum(-y .* log(hyp) - (1 - y) .* log(1 - hyp)) + lambda / (2 * m) * sum(theta(2:end) .^ 2);
+J = 1/m * sum(-y .*log(hyp)-(1-y).*log(1-hyp))+lambda/(2*m)*sum(theta(2:end).^ 2);
 
 %calculates the regularized gradient of the costfunction
-grad(1) = 1 / m * sum((hyp - y) .* X(:, 1));
+grad(1) = 1/m*sum((hyp-y).*X(:,1));
 for i = 2:size(theta, 1)
-    grad(i) = 1 / m * sum((hyp - y) .* X(:, i)) + lambda / m * theta(i);
+    grad(i) = 1/m*sum((hyp-y).*X(:,i))+lambda/m*theta(i);
 end
 
 

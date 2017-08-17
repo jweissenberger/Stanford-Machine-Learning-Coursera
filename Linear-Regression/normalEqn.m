@@ -12,7 +12,7 @@ theta = zeros(size(X, 2), 1);
 
 % ---------------------- Sample Solution ----------------------
 
-theta = inv(X' * X) * X' * y; 
+theta = pinv(X' * X) * X' * y; 
 %this is the closed form linear regression solution that does not require
 %feature scaling
 %if the matrix is non-invertable pinv can be used insteat to take the

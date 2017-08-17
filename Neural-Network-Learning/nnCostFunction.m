@@ -63,8 +63,9 @@ Theta2Grad = zeros(size(Theta2));
 %
 
 % forward propagation
-% a's represent the nodes of the hidden layer of the hidden layer
+% a's represent the nodes of each layer
 % z's are the the operation theata times the node
+% (slide 6 lecture 9)
 a1 = [ones(m, 1) X];
 z2 = a1*Theta1';
 a2 = [ones(size(z2, 1), 1) sigmoid(z2)];
@@ -79,26 +80,28 @@ for i=1:m
   Bivec(i, :)= Iden(y(i), :);
 end
 
-% calculte the penalty for back prop
+% penalty for back prop
 pen = sum(sum(Theta1(:, 2:end).^2, 2))+sum(sum(Theta2(:, 2:end).^2, 2));
 
-% calculate NN cost function
-J = sum(sum((-Bivec).*log(hyp) - (1-Bivec).*log(1-hyp), 2))/m + lambda*pen/(2*m);
+% cost function from eqn in 1.4
+J = sum(sum((-Bivec).*log(hyp) - (1-Bivec).*log(1-hyp),2))/m + lambda*pen/(2*m);
 
-% calculate sigmas
-sigma3 = a3-Bivec;
-sigma2 = (sigma3*Theta2).*sigmoidGradient([ones(size(z2, 1), 1) z2]);
-sigma2 = sigma2(:, 2:end);
+% sigmas for each output unit
+% (slide 7 lecture 9)
+sig3 = a3-Bivec;
+sig2 = (sig3*Theta2).*sigmoidGradient([ones(size(z2, 1), 1) z2]);
+sig2 = sig2(:, 2:end);
 
-% gradients, (error in each node)
-del1 = (sigma2'*a1);
-del2 = (sigma3'*a2);
+% gradients, (error in each node for back propagation)
+% (slide 8 lecture 9)
+del_1 = (sig2'*a1);
+del_2 = (sig3'*a2);
 
-% calculate regularized gradient
+% regularize the gradients
 p1 = (lambda/m)*[zeros(size(Theta1, 1), 1) Theta1(:, 2:end)];
 p2 = (lambda/m)*[zeros(size(Theta2, 1), 1) Theta2(:, 2:end)];
-Theta1Grad = del1./m + p1;
-Theta2Grad = del2./m + p2;
+Theta1Grad = del_1./m + p1;
+Theta2Grad = del_2./m + p2;
 
 % -------------------------------------------------------------
 

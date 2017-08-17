@@ -35,17 +35,17 @@ grad = zeros(size(theta));
 %           temp(1) = 0;   % because we don't add anything for j = 0  
 %           grad = grad + YOUR_CODE_HERE (using the temp variable)
 
-
-hpy = sigmoid(X*theta); %hypothesis
+%hypothesis
+hpy = sigmoid(X*theta);
 
 %want to use everything except the first theta value
 theta1 = [0 ; theta(2:end, :)]; 
 
 %cost function
-J = ((-y)'*log(hpy) - (1-y)'*log(1-hpy))/m + lambda*(theta1'*theta1)/(2*m);
+J = ((-y)'*log(hpy)-(1-y)'*log(1-hpy))/m+lambda*(theta1'*theta1)/(2*m);
 
 %calculates gradient
-grad = (X'*(hpy - y)+lambda*theta1)/m;
+grad = (X'*(hpy-y)+lambda*theta1)/m;
 
 
 
