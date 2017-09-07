@@ -62,9 +62,7 @@ Theta2Grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
-% forward propagation
-% a's represent the nodes of each layer
-% z's are the the operation theata times the node
+% forward propagation algorithm
 % (slide 6 lecture 9)
 a1 = [ones(m, 1) X];
 z2 = a1*Theta1';
@@ -75,20 +73,20 @@ hyp = a3;
 
 % mapping y into a binary vector to be used with the NN cost function
 Iden = eye(num_labels);
-Bivec = zeros(m, num_labels);
+yk = zeros(m, num_labels);
 for i=1:m
-  Bivec(i, :)= Iden(y(i), :);
+  yk(i, :)= Iden(y(i), :);
 end
 
 % penalty for back prop
 pen = sum(sum(Theta1(:, 2:end).^2, 2))+sum(sum(Theta2(:, 2:end).^2, 2));
 
 % cost function from eqn in 1.4
-J = sum(sum((-Bivec).*log(hyp) - (1-Bivec).*log(1-hyp),2))/m + lambda*pen/(2*m);
+J = (1/m)*sum(sum((-yk).*log(hyp) - (1-yk).*log(1-hyp),2)) + lambda*pen/(2*m);
 
 % sigmas for each output unit
 % (slide 7 lecture 9)
-sig3 = a3-Bivec;
+sig3 = a3-yk;
 sig2 = (sig3*Theta2).*sigmoidGradient([ones(size(z2, 1), 1) z2]);
 sig2 = sig2(:, 2:end);
 
