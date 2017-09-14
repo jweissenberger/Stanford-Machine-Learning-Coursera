@@ -20,6 +20,8 @@ for iter = 1:num_iters
     % computes the gradient descent each time the loop iterates 
     % this same equation can be applied for multivariable gradient descent
     theta = theta - alpha * (X' *(X* theta-y))/m;
+    
+    %alpha is the learning rate that updates each time
 
 
     % ============================================================
