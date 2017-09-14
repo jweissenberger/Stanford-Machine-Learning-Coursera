@@ -78,28 +78,28 @@ for i=1:m
   yk(i, :)= Iden(y(i), :);
 end
 
-% penalty for back prop
-pen = sum(sum(Theta1(:, 2:end).^2, 2))+sum(sum(Theta2(:, 2:end).^2, 2));
+% regularized part from 1.4
+reg = sum(sum(Theta1(:, 2:end).^2, 2))+sum(sum(Theta2(:, 2:end).^2, 2));
 
 % cost function from eqn in 1.4
-J = (1/m)*sum(sum((-yk).*log(hyp) - (1-yk).*log(1-hyp),2)) + lambda*pen/(2*m);
+J = (1/m)*sum(sum((-yk).*log(hyp) - (1-yk).*log(1-hyp),2)) + lambda*reg/(2*m);
 
-% sigmas for each output unit
+% dels for each output unit
 % (slide 7 lecture 9)
-sig3 = a3-yk;
-sig2 = (sig3*Theta2).*sigmoidGradient([ones(size(z2, 1), 1) z2]);
-sig2 = sig2(:, 2:end);
+del3 = a3-yk;
+del2 = (del3*Theta2).*sigmoidGradient([ones(size(z2, 1), 1) z2]);
+del2 = del2(:, 2:end);
 
 % gradients, (error in each node for back propagation)
 % (slide 8 lecture 9)
-del_1 = (sig2'*a1);
-del_2 = (sig3'*a2);
+Delta_1 = (del2'*a1);
+Delta_2 = (del3'*a2);
 
 % regularize the gradients
 p1 = (lambda/m)*[zeros(size(Theta1, 1), 1) Theta1(:, 2:end)];
 p2 = (lambda/m)*[zeros(size(Theta2, 1), 1) Theta2(:, 2:end)];
-Theta1Grad = del_1./m + p1;
-Theta2Grad = del_2./m + p2;
+Theta1Grad = Delta_1./m + p1;
+Theta2Grad = Delta_2./m + p2;
 
 % -------------------------------------------------------------
 
